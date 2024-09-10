@@ -32,6 +32,12 @@ class FileSearchSpace(SearchSpace):
                 return line_candidate
 
 
+    def clean_up(self):
+        if self.file is not None:
+            self.file.close()
+            self.file = None
+
+
 class DirectorySearchSpace(SearchSpace):
     def __init__(self, pathname: str):
         return

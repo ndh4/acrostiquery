@@ -38,6 +38,8 @@ def get_hit_indices(mode: SearchMode, lang: Language, space: SearchSpace, term: 
                 j, line = next_line(j, space)
                 k += 1
 
+    space.clean_up()
+
     return hits
 
 
@@ -86,5 +88,7 @@ def flesh_out_hits(hits: set[int], mode: SearchMode, lang: Language, space: Sear
     while line:
         recordings_in_progress.update(j, line)
         j, line = next_line(j, space)
+
+    space.clean_up()
 
     return recordings_in_progress.get_hits()
