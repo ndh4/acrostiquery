@@ -1,6 +1,9 @@
+from typing import Tuple
+
 from data_types import SearchMode, Language, Hit, Line, Recordings
 
 import SearchSpace
+
 
 def do_search(mode: SearchMode, lang: Language, space: SearchSpace, term: str, buffer_len: int) -> list[Hit]:
 
@@ -22,8 +25,8 @@ def get_hit_indices(mode: SearchMode, lang: Language, space: SearchSpace, term: 
     kmp_table = generate_kmp_table(term)
     j, line = first_line(space)
 
-    while not line.eos():
-        if same_letter(term[k], line.get_relevant_char(mode)):
+    while line:
+        if same_letter(term[k], line.get_relevant_char(mode), lang):
             j, line = next_line(j, space)
             k += 1
             if k == len(term):
@@ -63,24 +66,24 @@ def generate_kmp_table(term: str) -> list[int]:
     return table
 
 
-def same_letter(a: str, b: str) -> bool:
-    pass
+def same_letter(a: str, b: str, lang: Language) -> bool:
+    return a.upper() == b.upper()
 
 
-def first_line(space: SearchSpace) -> (int, Line):
+def first_line(space: SearchSpace) -> Tuple[int, Line | None]:
     space.reset()
     return 0, space.get_next_line()
 
 
-def next_line(j: int, space: SearchSpace) -> (int, Line):
+def next_line(j: int, space: SearchSpace) -> Tuple[int, Line | None]:
     return j + 1, space.get_next_line()
 
 
 def flesh_out_hits(hits: set[int], mode: SearchMode, lang: Language, space: SearchSpace, term: str, buffer_len: int) -> list[Hit]:
 
-    j, line = first_line(space)
     recordings_in_progress = Recordings(hits, mode, lang, term, buffer_len)
-    while not line.eos():
+    j, line = first_line(space)
+    while line:
         recordings_in_progress.update(j, line)
         j, line = next_line(j, space)
 
