@@ -1,13 +1,10 @@
 from enum import Enum
 from operator import truediv
+from typing import List
 
 SearchMode = Enum('Mode', ['ACROSTIC', 'TELESTICH'])
 
 Language = Enum('Language', ['en', 'grc', 'la'])
-
-class Hit:
-    def __init__(self):
-        pass
 
 
 class Line:
@@ -48,15 +45,45 @@ class Line:
                 return self.content[-1]
 
 
+    def print(self):
+        print('<' + self.loc + '> ' + self.content)
+
+
+class Hit:
+    def __init__(self, buffer_len: int, term_len: int):
+        self.buffer_len = buffer_len
+        self.term_len = term_len
+        self.lines = []
+
+
+    def add_line(self, l: Line):
+        self.lines.append(l)
+
+
+    def print(self):
+        for l in self.lines:
+            l.print()
+
 
 class Recordings:
     def __init__(self, hits: set[int], mode: SearchMode, lang: Language, term: str, buffer_len: int):
-        pass
+        self.hits = hits
+        self.mode = mode
+        self.lang = lang
+        self.buffer_len = buffer_len
+        self.term_len = len(term)
+        self.result_len = self.term_len + (2 * self.buffer_len)
+        self.hits : List[Hit] = []
+
 
     def update(self, j: int, line: Line):
-        pass
+        if j + self.buffer_len in self.hits:
+            self.hits.append(Hit(self.buffer_len, self.term_len))
+
+        for hit in self.hits:
+            if len(hit.lines) < self.result_len:
+                hit.lines.append(line)
+
 
     def get_hits(self) -> list[Hit]:
-        pass
-
-
+        return self.hits
