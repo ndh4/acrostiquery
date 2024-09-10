@@ -1,5 +1,4 @@
 from enum import Enum
-from operator import truediv
 from typing import List
 
 SearchMode = Enum('Mode', ['ACROSTIC', 'TELESTICH'])
