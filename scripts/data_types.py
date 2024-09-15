@@ -80,7 +80,7 @@ class Hits:
 
 
     def to_string(self):
-        return '\n'.join([hit.to_string() for hit in self.hits])
+        return '\n\n'.join([hit.to_string() for hit in self.hits])
 
     def iter(self):
         return self.hits
