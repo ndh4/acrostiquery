@@ -1,11 +1,11 @@
 from typing import Tuple
 
-from data_types import SearchMode, Language, Hit, Line, Recordings
+from data_types import SearchMode, Language, Hit, Hits, Line, Recordings
 
 import SearchSpace
 
 
-def do_search(mode: SearchMode, lang: Language, space: SearchSpace, term: str, buffer_len: int) -> list[Hit]:
+def do_search(mode: SearchMode, lang: Language, space: SearchSpace, term: str, buffer_len: int) -> Hits:
 
     hits = get_hit_indices(mode, lang, space, term)
 
@@ -81,7 +81,7 @@ def next_line(j: int, space: SearchSpace) -> Tuple[int, Line | None]:
     return j + 1, space.get_next_line()
 
 
-def flesh_out_hits(hits: set[int], mode: SearchMode, lang: Language, space: SearchSpace, term: str, buffer_len: int) -> list[Hit]:
+def flesh_out_hits(hits: set[int], mode: SearchMode, lang: Language, space: SearchSpace, term: str, buffer_len: int) -> Hits:
 
     recordings_in_progress = Recordings(hits, mode, lang, term, buffer_len)
     j, line = first_line(space)

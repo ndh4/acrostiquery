@@ -54,7 +54,7 @@ class FileSearchSpace(SearchSpace):
             self.file = None
 
 def name_to_int(name: str) -> int:
-    result = re.search('\d+', name)
+    result = re.search('\\d+', name)
     if result is None:
         return -1
     else:
@@ -71,20 +71,29 @@ class DirectorySearchSpace(SearchSpace):
 
     def reset(self):
         self.clean_up()
+        if len(self.spaces) >= 1:
+            self.current_space = 0
+            self.spaces[self.current_space].reset()
 
 
     def get_next_line(self) -> Line | None:
-        while -1 < self.current_space < len(self.spaces):
+        while self.current_space_is_valid():
             line_candidate = self.spaces[self.current_space].get_next_line()
             if line_candidate:
                 return line_candidate
             else:
                 self.spaces[self.current_space].clean_up()
                 self.current_space += 1
-                self.spaces[self.current_space].reset()
+                if self.current_space_is_valid():
+                    self.spaces[self.current_space].reset()
         return None
 
 
     def clean_up(self):
-        self.spaces[self.current_space].clean_up()
+        if self.current_space_is_valid():
+            self.spaces[self.current_space].clean_up()
         self.current_space = -1
+
+
+    def current_space_is_valid(self):
+        return -1 < self.current_space < len(self.spaces)

@@ -45,14 +45,17 @@ class Line:
 
 
     def print(self):
-        print('<' + self.loc + '> ' + self.content)
+        print(self.to_string())
+
+    def to_string(self):
+        return '<' + self.loc + '> ' + self.content
 
 
 class Hit:
     def __init__(self, buffer_len: int, term_len: int):
-        self.buffer_len = buffer_len
-        self.term_len = term_len
-        self.lines = []
+        self.buffer_len : int = buffer_len
+        self.term_len : int = term_len
+        self.lines : list[Line] = []
 
 
     def add_line(self, l: Line):
@@ -63,6 +66,25 @@ class Hit:
         for l in self.lines:
             l.print()
 
+    def to_string(self):
+        return '\n'.join(line.to_string() for line in self.lines)
+
+
+class Hits:
+    def __init__(self):
+        self.hits : list[Hit] = []
+
+
+    def add_hit(self, h: Hit):
+        self.hits.append(h)
+
+
+    def to_string(self):
+        return '\n'.join([hit.to_string() for hit in self.hits])
+
+    def iter(self):
+        return self.hits
+
 
 class Recordings:
     def __init__(self, hits: set[int], mode: SearchMode, lang: Language, term: str, buffer_len: int):
@@ -72,17 +94,17 @@ class Recordings:
         self.buffer_len = buffer_len
         self.term_len = len(term)
         self.result_len = self.term_len + (2 * self.buffer_len)
-        self.rich_hits : List[Hit] = []
+        self.rich_hits : Hits = Hits()
 
 
     def update(self, j: int, line: Line):
         if j + self.buffer_len in self.raw_hits:
-            self.rich_hits.append(Hit(self.buffer_len, self.term_len))
+            self.rich_hits.add_hit(Hit(self.buffer_len, self.term_len))
 
-        for hit in self.rich_hits:
+        for hit in self.rich_hits.iter():
             if len(hit.lines) < self.result_len:
                 hit.lines.append(line)
 
 
-    def get_hits(self) -> list[Hit]:
+    def get_hits(self) -> Hits:
         return self.rich_hits
