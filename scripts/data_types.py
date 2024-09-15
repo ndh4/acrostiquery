@@ -34,14 +34,23 @@ class Line:
             loc_and_content = text.split('>', 1)
             self.loc = loc_and_content[0][1:]
             self.content = loc_and_content[1].strip()
+        else:
+            self.tess_huh = False
 
 
     def get_relevant_char(self, mode: SearchMode) -> str:
+        # print(self.to_string())
         match mode:
             case 'ACROSTIC':
-                return self.content[0]
+                for char in self.content:
+                    if char.isalpha():
+                        return char
+                return '*'
             case 'TELESTICH':
-                return self.content[-1]
+                for char in reversed(self.content):
+                    if char.isalpha():
+                        return char
+                return '*'
 
 
     def print(self):

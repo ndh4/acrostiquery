@@ -1,6 +1,6 @@
 from typing import Tuple
 
-from data_types import SearchMode, Language, Hit, Hits, Line, Recordings
+from data_types import SearchMode, Language, Hits, Line, Recordings
 
 import SearchSpace
 
@@ -69,6 +69,8 @@ def generate_kmp_table(term: str) -> list[int]:
 
 
 def same_letter(a: str, b: str, lang: Language) -> bool:
+    if a == '*' or b == '*':
+        return True
     return a.upper() == b.upper()
 
 
