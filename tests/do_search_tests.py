@@ -7,7 +7,7 @@ from do_search import do_search, get_hit_indices
 class SearchTests(unittest.TestCase):
 
     def test_do_search(self):
-        path = '../texts/la/lucan.bellum_civile/lucan.bellum_civile.part.1.tess'
+        path = '../texts/la/lucan.bellum_civile/lucan.bellum_civile.part.1'
         search_space = make_search_space(path, 'la')
         rich_hits = do_search('ACROSTIC', 'la', search_space, 'HUQ', 2)
         self.assertEqual(rich_hits.to_string(),
@@ -21,7 +21,7 @@ class SearchTests(unittest.TestCase):
 
 
     def test_get_hit_indices(self):
-        path = '../texts/la/lucan.bellum_civile/lucan.bellum_civile.part.1.tess'
+        path = '../texts/la/lucan.bellum_civile/lucan.bellum_civile.part.1'
         search_space = make_search_space(path, 'la')
         hits = get_hit_indices('ACROSTIC', 'la', search_space, 'HUQ')
         self.assertEqual(hits, {13})
@@ -46,7 +46,7 @@ class SearchTests(unittest.TestCase):
         self.assertEqual(len(hits), 1)
 
     def test_qed_search(self):
-        path = '../texts/la/lucan.bellum_civile/lucan.bellum_civile.part.1.tess'
+        path = '../texts/la/lucan.bellum_civile/lucan.bellum_civile.part.1'
         search_space = make_search_space(path, 'la')
         rich_hits = do_search('ACROSTIC', 'la', search_space, 'QED', 0)
         self.assertEqual(rich_hits.to_string(),
@@ -55,7 +55,7 @@ class SearchTests(unittest.TestCase):
 <luc. 1.138> dona ducum, nec iam ualidis radicibus haerens,""")
 
     def test_tt_search(self):
-        path = '../texts/la/lucan.bellum_civile/lucan.bellum_civile.part.1.tess'
+        path = '../texts/la/lucan.bellum_civile/lucan.bellum_civile.part.1'
         search_space = make_search_space(path, 'la')
         rich_hits = do_search('ACROSTIC', 'la', search_space, 'TT', 1)
         self.assertEqual(rich_hits.to_string(),
@@ -166,7 +166,7 @@ class SearchTests(unittest.TestCase):
 <stat. theb. 6.200> ad tua templa genas, sed non ratus ore sacerdos,""")
 
     def test_martyrii_search(self):
-        path = '../texts/la/cyprian.fortunatum_aut_de_exhortatione_martyrii.tess'
+        path = '../texts/la/cyprian.fortunatum_aut_de_exhortatione_martyrii'
         search_space = make_search_space(path, 'la')
         rich_hits = do_search('ACROSTIC', 'la', search_space, 'IIIDPP', 1)
         self.assertEqual(rich_hits.to_string(),
@@ -179,7 +179,7 @@ class SearchTests(unittest.TestCase):
 <cyprian. de_exhortatione_martyrii. 2.13> 'probat beatus apostolus paulus qui dignatione diuina usque in tertium caelum adque in paradisum raptus audisse se inenarrabilia testatur, qui oculata fide legum christum uidisse se gloriatur, qui id quod et didicit et uidit maioris conscientiae ueritate profitetur. non sunt, inquit, condignae passiones huius temporis ad superuenturam claritudinem quae reuelabitur in nobis. quis ergo non omnibus modis elaboret ad claritatem tantam peruenire, ut amicus dei fiat, ut cum christo statim gaudeat, ut post tormenta et supplicia terrena praemia diuina percipiat? si militibus saecularibus gloriosum est ut hoste deuicto redeant in patriam triumphantes, quanto potior et maior est gloria uicto diabolo ad paradisum triumphantem redire et unde adam peccator eiectus est illuc, prostrato eo qui ante deceperat trophaea uictricia reportare, offerre domino . acceptissimum munus incorruptam fidem, uirtutem mentis incolumem, laudem deuotionis inlustrem, comitari eum cum uenire coeperit uindictam de inimicis recepturus, lateri eius adsistere cum sederit iudicaturus, coheredem christi fieri, angelis coaequari, cum patriarchis, cum apostolis, cum prophetis caelestis regni possessione laetari. has cogitationes quae persecutio potest uincere, quae possunt tormenta superare? durat fortis et stabilis religiosis meditationibus fundata mens et aduersus omnes diaboli terrores et minas mundi animus inmobilis perstat quem futurorum fides certa et solida corroborat. eluduntur in persecutionibus terrae, sed patet caelum: minatur antichristus, sed christus tuetur: mors infertur, sed inmortalitas sequitur: occiso mundus eripitur, sed restituto paradisus exhibetur: uita temporalis extinguitur, sed aeternitas repraesentatur. quanta est dignitas et quanta securitas exire hinc laetum, exire inter pressuras et angustias gloriosum, eludere in momento oculos, quibus homines uidebantur et mundus, aperire eosdem statim, ut deus uideatur et christus. tam feliciter migrandi quanta uelocitas. terris repente subtraheris, ut in regnis caelestibus reponaris. haec oportet mente et cogitatione conplecti, haec die ac nocte meditari. si talem persecutio inuenerit dei militem, uinci non poterit uirtus ad proelium prompta. uel si arcessitio ante praeuenerit, sine praemio non erit fides quae erat ad martyrium praeparata: sine damno temporis merces deo iudice redditur: in persecutione militia, in pace conscientia coronatur.""")
 
     def test_martyri_search(self):
-        path = '../texts/la/cyprian.fortunatum_aut_de_exhortatione_martyrii.tess'
+        path = '../texts/la/cyprian.fortunatum_aut_de_exhortatione_martyrii'
         search_space = make_search_space(path, 'la')
         rich_hits = do_search('ACROSTIC', 'la', search_space, 'IIIDP', 1)
         self.assertEqual(rich_hits.to_string(),

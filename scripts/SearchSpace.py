@@ -31,6 +31,8 @@ def make_search_space(pathname: str, lang: Language) -> SearchSpace:
         return DirectorySearchSpace(pathname, lang)
     if os.path.isfile(pathname):
         return FileSearchSpace(pathname, lang)
+    if os.path.isfile(pathname + '.tess'):
+        return FileSearchSpace(pathname + '.tess', lang)
     raise Exception("Invalid Search Space:", pathname)
 
 

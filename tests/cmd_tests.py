@@ -52,3 +52,12 @@ class SearchTests(unittest.TestCase):
 <luc. 1.17> et qua bruma, rigens ac nescia uere remitti,
 <luc. 1.18> adstringit scythico glacialem frigore pontum!
 <luc. 1.19> sub iuga iam seres, iam barbarus isset araxes,"""
+
+    def test_front_cutoff(self):
+        input = "python3 cmd.py -m ACROSTIC -l la -b 1 ../texts/la/prudentius.apotheosis ecst"
+        expected_output = """<prud. apo.  . > 
+<prud. apo. 1.1> est tria summa deus, trinum specimen, uigor unus.
+<prud. apo. 1.2> corde patris genita est sapientia, filius ipse est;
+<prud. apo. 1.3> sanctus ab aeterno subsistit spiritus ore.
+<prud. apo. 1.4> tempore nec senior pater est, nec numine maior,
+<prud. apo. 1.5> nam sapiens retro semper deus edidit ex se,"""

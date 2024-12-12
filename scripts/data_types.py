@@ -1,3 +1,4 @@
+import re
 from enum import Enum
 
 from tesslang import standardize
@@ -110,6 +111,12 @@ class Recordings:
 
 
     def update(self, j: int, line: Line):
+        if j < self.buffer_len and j in self.raw_hits:
+            new_hit = Hit(self.buffer_len, self.term_len)
+            for i in range(j, self.buffer_len):
+                new_hit.add_line(Line('<' + re.sub(r"\d", ' ', line.loc) + '>'))
+            self.rich_hits.add_hit(new_hit)
+
         if j + self.buffer_len in self.raw_hits:
             self.rich_hits.add_hit(Hit(self.buffer_len, self.term_len))
 
