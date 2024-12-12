@@ -5,13 +5,13 @@ import unicodedata
 
 def beta_to_uni(beta):
 	code = [		
-		(r'\)',unichr(0x0313)),
-		(r'\(',unichr(0x0314)),
-		(r'\/',unichr(0x0301)),
-		(r'\=',unichr(0x0342)),
-		(r'\\',unichr(0x0300)),
-		(r'\+',unichr(0x0308)),
-		(r'\|',unichr(0x0345)),
+		(r'\)',chr(0x0313)),
+		(r'\(',chr(0x0314)),
+		(r'\/',chr(0x0301)),
+		(r'\=',chr(0x0342)),
+		(r'\\',chr(0x0300)),
+		(r'\+',chr(0x0308)),
+		(r'\|',chr(0x0345)),
 	
 		(r'\*a',u'Α'),	(r'a',u'α'),
 		(r'\*b',u'Β'),	(r'b',u'β'),

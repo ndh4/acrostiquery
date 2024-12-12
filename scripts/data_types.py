@@ -1,5 +1,6 @@
 from enum import Enum
-from typing import List
+
+from tesslang import standardize
 
 SearchMode = Enum('Mode', ['ACROSTIC', 'TELESTICH'])
 
@@ -40,13 +41,12 @@ class Line:
 
     def get_relevant_char(self, mode: SearchMode) -> str:
         # print(self.to_string())
-        match mode:
-            case 'ACROSTIC':
+        if mode == 'ACROSTIC':
                 for char in self.content:
                     if char.isalpha():
                         return char
                 return '*'
-            case 'TELESTICH':
+        else:
                 for char in reversed(self.content):
                     if char.isalpha():
                         return char
@@ -58,6 +58,9 @@ class Line:
 
     def to_string(self):
         return '<' + self.loc + '> ' + self.content
+
+    def standardize(self, lang: Language):
+        self.content = standardize(lang, self.content)
 
 
 class Hit:

@@ -1,4 +1,4 @@
-from typing import Tuple
+from typing import Tuple, Optional
 
 from data_types import SearchMode, Language, Hits, Line, Recordings
 
@@ -74,12 +74,12 @@ def same_letter(a: str, b: str, lang: Language) -> bool:
     return a.upper() == b.upper()
 
 
-def first_line(space: SearchSpace) -> Tuple[int, Line | None]:
+def first_line(space: SearchSpace) -> Tuple[int, Optional[Line]]:
     space.reset()
     return 0, space.get_next_line()
 
 
-def next_line(j: int, space: SearchSpace) -> Tuple[int, Line | None]:
+def next_line(j: int, space: SearchSpace) -> Tuple[int, Optional[Line]]:
     return j + 1, space.get_next_line()
 
 
