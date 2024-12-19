@@ -8,9 +8,6 @@ from tesslang import standardize
 
 
 class SearchSpace:
-    # def __init__(self, lang):
-    #     self.lang = lang
-
     @abstractmethod
     def reset(self):
         pass

@@ -2,14 +2,15 @@ import unittest
 import os
 
 def is_as_expected(tester, input, expected_output):
-    with os.popen("python3 ../scripts/cmd.py " + input) as o:
+    with os.popen("python3 ../scripts/main.py " + input) as o:
         output = o.read()
     output = output.strip()  # Remove leading spaces and LFs
     tester.assertEqual(output, expected_output)
 
 class SearchTests(unittest.TestCase):
     def test_telestich(self):
-        input = "-m TELESTICH -l la -b 3 ../texts/la/lucan.bellum_civile/lucan.bellum_civile.part.1.tess sim"
+        self.maxDiff = None
+        input = '\"{\\"mode\\": \\"TELESTICH\\", \\"lang\\": \\"la\\", \\"term\\": \\"sim\\", \\"buflen\\": 3, \\"search_space\\": \\"lucan.bellum_civile.part.1.tess\\"}\"'
         expected_output = """<luc. 1.4> cognatasque acies, et rupto foedere regni,
 <luc. 1.5> certatum totis concussi uiribus orbis
 <luc. 1.6> in commune nefas, infestisque obuia signis
@@ -38,11 +39,13 @@ class SearchTests(unittest.TestCase):
 <luc. 1.511> difficiles! urbem, populis uictisque frequentem
 <luc. 1.512> gentibus, et generis, coeat si turba, capacem
 <luc. 1.513> humani, facilem uenturo caesare praedam
-<luc. 1.514> ignauae liquere manus. cum pressus ab hoste"""
+<luc. 1.514> ignauae liquere manus. cum pressus ab hoste
+
+End of results for """ + input
         is_as_expected(self, input, expected_output)
 
     def test_acrostic(self):
-        input = "-m ACROSTIC -l la -b 3 ../texts/la/lucan.bellum_civile/lucan.bellum_civile.part.1.tess huq"
+        input = '\"{\\"mode\\": \\"ACROSTIC\\", \\"lang\\": \\"la\\", \\"term\\": \\"huq\\", \\"buflen\\": 3, \\"search_space\\": \\"lucan.bellum_civile.part.1.tess\\"}\"'
         expected_output = """<luc. 1.11> ausoniis, umbraque erraret crassus inulta,
 <luc. 1.12> bella geri placuit nullos habitura triumphos?
 <luc. 1.13> heu quantum terrae potuit pelagique parari
@@ -51,13 +54,19 @@ class SearchTests(unittest.TestCase):
 <luc. 1.16> quaque dies medius flagrantibus aestuat horis,
 <luc. 1.17> et qua bruma, rigens ac nescia uere remitti,
 <luc. 1.18> adstringit scythico glacialem frigore pontum!
-<luc. 1.19> sub iuga iam seres, iam barbarus isset araxes,"""
+<luc. 1.19> sub iuga iam seres, iam barbarus isset araxes,
+
+End of results for """ + input
+        is_as_expected(self, input, expected_output)
 
     def test_front_cutoff(self):
-        input = "python3 cmd.py -m ACROSTIC -l la -b 1 ../texts/la/prudentius.apotheosis ecst"
+        input = '\"{\\"mode\\": \\"ACROSTIC\\", \\"lang\\": \\"la\\", \\"term\\": \\"ecst\\", \\"buflen\\": 1, \\"search_space\\": \\"prudentius.apotheosis\\"}\"'
         expected_output = """<prud. apo.  . > 
 <prud. apo. 1.1> est tria summa deus, trinum specimen, uigor unus.
 <prud. apo. 1.2> corde patris genita est sapientia, filius ipse est;
 <prud. apo. 1.3> sanctus ab aeterno subsistit spiritus ore.
 <prud. apo. 1.4> tempore nec senior pater est, nec numine maior,
-<prud. apo. 1.5> nam sapiens retro semper deus edidit ex se,"""
+<prud. apo. 1.5> nam sapiens retro semper deus edidit ex se,
+
+End of results for """ + input
+        is_as_expected(self, input, expected_output)
