@@ -72,14 +72,14 @@ def determine_searchspace(query_obj):
     if user_res[:1] == 'y':
         query_obj['pathname']: str = '../texts/' + query_obj['lang']
     else:
-        user_res = (input("Which work would you like to search? (ex. ovid.ars_amatoria)\n> ")
+        example = 'ovid.ars_amatoria'
+        if query_obj['lang'] == 'grc':
+            example = 'homer.odyssey'
+        elif query_obj['lang'] == 'en':
+            example = 'milton.paradise_lost'
+        user_res = (input(f"Which work would you like to search? (ex. {example})\n> ")
                     .strip().lower())
         query_obj['pathname']: str = '../texts/' + query_obj['lang'] + '/' + user_res
-
-# def print_and_run(query_obj):
-#     # query = f"python3 cmd.py -m {query_obj['mode']} -l {query_obj['lang']} -b {query_obj['buflen']} {query_obj['pathname']} {query_obj['term']}"
-#     print("Final query:", query_obj)
-#     # os.system(query)
 
 
 def build_query():
