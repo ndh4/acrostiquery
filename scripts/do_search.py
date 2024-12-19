@@ -11,6 +11,8 @@ def do_search(mode: SearchMode, lang: Language, space: SearchSpace, term: str, b
 
     rich_hits = flesh_out_hits(hits, mode, lang, space, term, buffer_len)
 
+    rich_hits.remove_duplicates()
+
     return rich_hits
 
 

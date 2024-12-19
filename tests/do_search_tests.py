@@ -90,6 +90,7 @@ class SearchTests(unittest.TestCase):
 <luc. 1.600> et lotam paruo reuocant almone cybellen:""")
 
     def test_uisa_search(self):
+        self.maxDiff = None
         path = '../texts/la'
         search_space = make_search_space(path, 'la')
         rich_hits = do_search('ACROSTIC', 'la', search_space, 'UISA', 0)
@@ -104,6 +105,11 @@ class SearchTests(unittest.TestCase):
 <claud. cons. stil. 3.95> ilia seges non auxilium modo praebuit urbi,
 <claud. cons. stil. 3.96> sed fuit indicio, quantum tibi, roma, liceret:
 <claud. cons. stil. 3.97> admonuit dominae gentes instarque tropaei
+
+<plin. nat. 18.69> uomerum plura genera: culter uocatur inflexus praedensam, priusquam proscindatur, terram secans futurisque sulcis uestigia praescribens incisuris, quas resupinus in arando mordeat uomer. alterum genus est uolgare rostrati uectis. tertium in solo facili, nec toto porrectum dentali, sed exigua cuspide in rostro. latior haec quarto generi et acutior in mucronem fastigata eodemque gladio scindens solum et acie laterum radices herbarum secans. non pridem inuentum in raetia galliae duas addere tali rotulas, quod genus uocant plaumorati. cuspis effigiem palae habet. serunt ita non nisi culta terra et fere noua. latitudo uomeris caespites uersat. semen protinus iniciunt cratesque dentatas supertrahunt. nec sarienda sunt hoc modo sata, sed protelis binis ternisque sic arant. uno boum iugo censeri anno facilis soli quadragena iugera, difficilis tricena iustum est.
+<plin. nat. 18.70> in arando magnopere seruandum est catonis oraculum: "quid est bene agrum colere bene arare. quid secundum arare. quid  tertium stercorare. sulco uario ne ares. tempestiue ares." tepidioribus locis a bruma proscindi arua oportet, frigidioribus ab aequinoctio uerno, et maturius sicca regione quam umida, maturius densa terra quam soluta, pingui quam macra. ubi siccae et graues aestates, terra cretosa aut gracilis, utilius inter solstitium et autumni aequinoctium aratur; ubi leues aestus, frequentes imbres, pingue herbosumque solum, ibi mediis caloribus. altum et graue solum etiam hieme moueri placet, tenue ualde et aridum paulo ante sationem.
+<plin. nat. 18.71> sunt et huic suae leges: lutosam terram ne tangito. ui omni arato. prius quam ares proscindito. hoc utilitatem habet, quod inuerso caespite herbarum radices necantur. quidam utique ab aequinoctio uerno proscindi uolunt. - quod uere semel aratum est, a temporis argumento ueruactum uocatur. hoc in nouali aeque necessarium est. nouale est quod alternis annis seritur. - araturos boues quam artissime iungi oportet, ut capitibus sublatis arent - sic minime colla contundunt - ; si inter arbores uitesque aretur, fiscellis capistrari, ne germinum tenera praecerpant; securiculam in stiua pendere, qua intercidantur radices - hoc melius quam conuelli aratro bouesque luctari - ; in arando uersum peragi nec strigare in actu spiritus. iustum est proscindi sulco dodrantali iugerum uno die, iterari sesquiiugerum, si sit facilitas  soli; si minus, proscindi semissem, iterari assem, quando et animalium labori natura leges statuit. omne aruum rectis sulcis, mox et obliquis subigi debet. in collibus trauerso tantum monte aratur, sed modo in superiora modo in inferiora rostrante uomere, tantumque est laboris homini, ut etiam boum uice fungatur. certe sine hoc animali montanae gentes sarculis arant. arator nisi incuruus praeuaricatur. inde tralatum hoc crimen in forum. ibi utique caueatur, ubi inuentum est. purget uomerem subinde stimulus cuspidatus rallo. scamna inter duos sulcos cruda ne relinquantur, glaebae ne exultent. male aratur aruom, quod satis frugibus occandum est. id demum recte subactum erit, ubi non intellegetur, utro uomer ierit. in usu est et collicias interponere, si ita locus poscat, ampliore sulco, quae in fossas aquam educant.
+<plin. nat. 18.72> aratione per trauersum iterata occatio sequitur, ubi res poscit, crate uel rastro, et sato semine iteratur haec quoque, ubi consuetudo patitur, crate contenta uel tabula aratro adnexa - quod uocant lirare - operiente semina; ni operiantur, quae primum appellata, deliratio est. quarto seri sulco uergilius existimatur uoluisse, cum dixit optimam esse segetem, quae bis soles, bis frigora sensisset. spissius solum, sicut plerumque in italia, quinto sulco seri melius est, in tuscis uero nono. at fabam et uiciam non proscisso serere sine damno conpendium operae est.
 
 <livy. urbe. 2.46.3> uix explicandi ordines spatium etruscis fuit, cum pilis inter primam trepidationem abiectis temere magis quam emissis pugna iam in manus, iam ad gladios, ubi mars est atrocissimus, uenerat.
 <livy. urbe. 2.46.4> inter primores genus fabium insigne spectaculo exemploque ciuibus erat. ex his q. fabium—tertio hic anno ante consul fuerat—principem in confertos veientes euntem ferox uiribus et armorum arte tuscus, incautum inter multas uersantem hostium manus, gladio per pectus transfigit; telo extracto praeceps fabius in uulnus cadit.
@@ -125,6 +131,11 @@ class SearchTests(unittest.TestCase):
 <luc. 6.610> stella senem, medios herbis abrumpimus annos.
 <luc. 6.611> at simul a prima descendit origine mundi
 
+<stat. theb. 6.197> uerba pio miscens: alio tibi, perfide, pacto,
+<stat. theb. 6.198> iuppiter, hunc crinem uoti reus ante dicaram,
+<stat. theb. 6.199> si pariter uirides nati libare dedisses
+<stat. theb. 6.200> ad tua templa genas, sed non ratus ore sacerdos,
+
 <ov. met. 11.166> uerrit humum tyrio saturata murice palla,
 <ov. met. 11.167> instrictamque fidem gemmis et dentibus indis
 <ov. met. 11.168> sustinet a laeua; tenuit manus altera plectrum.
@@ -134,6 +145,11 @@ class SearchTests(unittest.TestCase):
 <ov. met. 13.852> ingentis clipei. quid? non haec omnia magnus
 <ov. met. 13.853> sol uidet e caelo? soli tamen unicus orbis!
 <ov. met. 13.854> adde, quod in uestro genitor meus aequore regnat:
+
+<coripp. johann. 6.579> "uber equum domitor, longo nec ludere pilo "
+<coripp. johann. 6.580> implicitus strictis miles ualet undique ramis.
+<coripp. johann. 6.581> sollicitos locus ille duces cautumque magistrum
+<coripp. johann. 6.582> "abstinuit bellis, aciesque stare coegit. "
 
 <claud. eutr. 2.184> uberibus propior mordebat fibula uestes,
 <claud. eutr. 2.185> inque orbem tereti mitra retinente capillum
@@ -145,25 +161,10 @@ class SearchTests(unittest.TestCase):
 <aus. ep. 28.9> sit metus et morem missae acceptaeque salutis
 <aus. ep. 28.10> audacter retine, uel si tibi proditor instat
 
-<coripp. johann. 6.579> "uber equum domitor, longo nec ludere pilo "
-<coripp. johann. 6.580> implicitus strictis miles ualet undique ramis.
-<coripp. johann. 6.581> sollicitos locus ille duces cautumque magistrum
-<coripp. johann. 6.582> "abstinuit bellis, aciesque stare coegit. "
-
 <vergil_pseudo. app_ver. 1.493> (utpote inaequalis uoluens perpascitur agros),
 <vergil_pseudo. app_ver. 1.494> ingeminant fluctus et stantibus increpat undis;
 <vergil_pseudo. app_ver. 1.495> sicut cum rapidum turbo mare cernulus aestu
-<vergil_pseudo. app_ver. 1.496> ac primum tenuis imas agit, ulteriores
-
-<plin. nat. 18.69> uomerum plura genera: culter uocatur inflexus praedensam, priusquam proscindatur, terram secans futurisque sulcis uestigia praescribens incisuris, quas resupinus in arando mordeat uomer. alterum genus est uolgare rostrati uectis. tertium in solo facili, nec toto porrectum dentali, sed exigua cuspide in rostro. latior haec quarto generi et acutior in mucronem fastigata eodemque gladio scindens solum et acie laterum radices herbarum secans. non pridem inuentum in raetia galliae duas addere tali rotulas, quod genus uocant plaumorati. cuspis effigiem palae habet. serunt ita non nisi culta terra et fere noua. latitudo uomeris caespites uersat. semen protinus iniciunt cratesque dentatas supertrahunt. nec sarienda sunt hoc modo sata, sed protelis binis ternisque sic arant. uno boum iugo censeri anno facilis soli quadragena iugera, difficilis tricena iustum est.
-<plin. nat. 18.70> in arando magnopere seruandum est catonis oraculum: "quid est bene agrum colere bene arare. quid secundum arare. quid  tertium stercorare. sulco uario ne ares. tempestiue ares." tepidioribus locis a bruma proscindi arua oportet, frigidioribus ab aequinoctio uerno, et maturius sicca regione quam umida, maturius densa terra quam soluta, pingui quam macra. ubi siccae et graues aestates, terra cretosa aut gracilis, utilius inter solstitium et autumni aequinoctium aratur; ubi leues aestus, frequentes imbres, pingue herbosumque solum, ibi mediis caloribus. altum et graue solum etiam hieme moueri placet, tenue ualde et aridum paulo ante sationem.
-<plin. nat. 18.71> sunt et huic suae leges: lutosam terram ne tangito. ui omni arato. prius quam ares proscindito. hoc utilitatem habet, quod inuerso caespite herbarum radices necantur. quidam utique ab aequinoctio uerno proscindi uolunt. - quod uere semel aratum est, a temporis argumento ueruactum uocatur. hoc in nouali aeque necessarium est. nouale est quod alternis annis seritur. - araturos boues quam artissime iungi oportet, ut capitibus sublatis arent - sic minime colla contundunt - ; si inter arbores uitesque aretur, fiscellis capistrari, ne germinum tenera praecerpant; securiculam in stiua pendere, qua intercidantur radices - hoc melius quam conuelli aratro bouesque luctari - ; in arando uersum peragi nec strigare in actu spiritus. iustum est proscindi sulco dodrantali iugerum uno die, iterari sesquiiugerum, si sit facilitas  soli; si minus, proscindi semissem, iterari assem, quando et animalium labori natura leges statuit. omne aruum rectis sulcis, mox et obliquis subigi debet. in collibus trauerso tantum monte aratur, sed modo in superiora modo in inferiora rostrante uomere, tantumque est laboris homini, ut etiam boum uice fungatur. certe sine hoc animali montanae gentes sarculis arant. arator nisi incuruus praeuaricatur. inde tralatum hoc crimen in forum. ibi utique caueatur, ubi inuentum est. purget uomerem subinde stimulus cuspidatus rallo. scamna inter duos sulcos cruda ne relinquantur, glaebae ne exultent. male aratur aruom, quod satis frugibus occandum est. id demum recte subactum erit, ubi non intellegetur, utro uomer ierit. in usu est et collicias interponere, si ita locus poscat, ampliore sulco, quae in fossas aquam educant.
-<plin. nat. 18.72> aratione per trauersum iterata occatio sequitur, ubi res poscit, crate uel rastro, et sato semine iteratur haec quoque, ubi consuetudo patitur, crate contenta uel tabula aratro adnexa - quod uocant lirare - operiente semina; ni operiantur, quae primum appellata, deliratio est. quarto seri sulco uergilius existimatur uoluisse, cum dixit optimam esse segetem, quae bis soles, bis frigora sensisset. spissius solum, sicut plerumque in italia, quinto sulco seri melius est, in tuscis uero nono. at fabam et uiciam non proscisso serere sine damno conpendium operae est.
-
-<stat. theb. 6.197> uerba pio miscens: alio tibi, perfide, pacto,
-<stat. theb. 6.198> iuppiter, hunc crinem uoti reus ante dicaram,
-<stat. theb. 6.199> si pariter uirides nati libare dedisses
-<stat. theb. 6.200> ad tua templa genas, sed non ratus ore sacerdos,""")
+<vergil_pseudo. app_ver. 1.496> ac primum tenuis imas agit, ulteriores""")
 
     def test_martyrii_search(self):
         path = '../texts/la/cyprian.fortunatum_aut_de_exhortatione_martyrii'

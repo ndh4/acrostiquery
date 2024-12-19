@@ -76,7 +76,7 @@ class DirectorySearchSpace(SearchSpace):
         self.spaces = [make_search_space(os.path.join(dirpath, subpath), lang)
                        for subpath in
                        sorted(os.listdir(dirpath), key=name_to_int)
-                       if subpath.endswith(".tess")]
+                       if not subpath.endswith(".html")]
         self.current_space = -1
         return
 

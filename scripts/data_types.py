@@ -98,6 +98,12 @@ class Hits:
     def iter(self):
         return self.hits
 
+    def remove_duplicates(self):
+        d = {}
+        for h in self.hits:
+            d[h.to_string()] = h
+        self.hits = list(d.values())
+
 
 class Recordings:
     def __init__(self, hits: set[int], mode: SearchMode, lang: Language, term: str, buffer_len: int):
