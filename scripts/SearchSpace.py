@@ -38,15 +38,6 @@ def make_search_space(name: str, lang: Language) -> SearchSpace:
                            if file.startswith(name) and file.endswith('.tess')],
                           key=name_to_int)))
     return MultiSearchSpace(all, lang)
-    # if name == '':
-    #     return MultiSearchSpace(base, lang)
-    # if os.path.isdir(pathname):
-    #     return MultiSearchSpace(pathname, lang)
-    # if os.path.isfile(base + '/' + name):
-    #     return SingleSearchSpace(base + '/' + name, lang)
-    # if os.path.isfile(base + '/' + name + '.tess'):
-    #     return SingleSearchSpace(base + '/' + name + '.tess', lang)
-    # raise Exception("Invalid Search Space:", name)
 
 
 class FileSearchSpace(SearchSpace):

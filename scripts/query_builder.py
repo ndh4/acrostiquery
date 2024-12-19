@@ -72,12 +72,12 @@ def determine_searchspace(query_obj):
     if user_res[:1] == 'y':
         query_obj['search_space']: str = ''
     else:
-        example = 'ovid.ars_amatoria'
+        examples = 'ovid, ovid.amores, ovid.amores.part.1.tess'
         if query_obj['lang'] == 'grc':
-            example = 'homer.odyssey'
+            examples = 'homer, homer.hymns, homer.hymns.part.1.tess'
         elif query_obj['lang'] == 'en':
-            example = 'milton.paradise_lost'
-        user_res = (input(f"Which work would you like to search? (ex. {example})\n> ")
+            examples = 'milton, milton.paradise_lost, milton.paradise_lost.part.1.tess'
+        user_res = (input(f"Which author/work would you like to search? (examples: {examples})\n> ")
                     .strip().lower())
         query_obj['search_space']: str = user_res
 
