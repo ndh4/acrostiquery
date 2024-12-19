@@ -1,4 +1,5 @@
 import json
+import os
 import sys
 import query_builder
 import query_runner
@@ -16,4 +17,5 @@ def main():
     print(f"\nEnd of results for {json.dumps(json.dumps(query))}")
 
 if __name__ == '__main__':
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
     main()
