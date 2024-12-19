@@ -7,7 +7,7 @@ from do_search import do_search, get_hit_indices
 class SearchTests(unittest.TestCase):
 
     def test_do_search(self):
-        path = '../texts/la/lucan.bellum_civile/lucan.bellum_civile.part.1'
+        path = 'lucan.bellum_civile.part.1'
         search_space = make_search_space(path, 'la')
         rich_hits = do_search('ACROSTIC', 'la', search_space, 'HUQ', 2)
         self.assertEqual(rich_hits.to_string(),
@@ -21,13 +21,13 @@ class SearchTests(unittest.TestCase):
 
 
     def test_get_hit_indices(self):
-        path = '../texts/la/lucan.bellum_civile/lucan.bellum_civile.part.1'
+        path = 'lucan.bellum_civile.part.1'
         search_space = make_search_space(path, 'la')
         hits = get_hit_indices('ACROSTIC', 'la', search_space, 'HUQ')
         self.assertEqual(hits, {13})
 
     def test_do_search_dir(self):
-        path = '../texts/la/lucan.bellum_civile'
+        path = 'lucan.bellum_civile'
         search_space = make_search_space(path, 'la')
         rich_hits = do_search('ACROSTIC', 'la', search_space, 'HUQ', 2)
         self.assertEqual(rich_hits.to_string(),
@@ -40,13 +40,13 @@ class SearchTests(unittest.TestCase):
 <luc. 1.18> adstringit scythico glacialem frigore pontum!""")
 
     def test_get_hit_indices_dir(self):
-        path = '../texts/la/lucan.bellum_civile'
+        path = 'lucan.bellum_civile'
         search_space = make_search_space(path, 'la')
-        hits = get_hit_indices('ACROSTIC', 'la', search_space, 'HUQ')
-        self.assertEqual(len(hits), 1)
+        hits = do_search('ACROSTIC', 'la', search_space, 'HUQ', 0)
+        self.assertEqual(1, hits.len())
 
     def test_qed_search(self):
-        path = '../texts/la/lucan.bellum_civile/lucan.bellum_civile.part.1'
+        path = 'lucan.bellum_civile.part.1'
         search_space = make_search_space(path, 'la')
         rich_hits = do_search('ACROSTIC', 'la', search_space, 'QED', 0)
         self.assertEqual(rich_hits.to_string(),
@@ -55,7 +55,8 @@ class SearchTests(unittest.TestCase):
 <luc. 1.138> dona ducum, nec iam ualidis radicibus haerens,""")
 
     def test_tt_search(self):
-        path = '../texts/la/lucan.bellum_civile/lucan.bellum_civile.part.1'
+        maxDiff = None
+        path = 'lucan.bellum_civile.part.1'
         search_space = make_search_space(path, 'la')
         rich_hits = do_search('ACROSTIC', 'la', search_space, 'TT', 1)
         self.assertEqual(rich_hits.to_string(),
@@ -87,29 +88,51 @@ class SearchTests(unittest.TestCase):
 <luc. 1.597> vestalemque chorum ducit uittata sacerdos,
 <luc. 1.598> troianam soli cui fas uidisse mineruam.
 <luc. 1.599> tunc qui fata deum secretaque carmina seruant,
-<luc. 1.600> et lotam paruo reuocant almone cybellen:""")
+<luc. 1.600> et lotam paruo reuocant almone cybellen:
+
+<luc. 10.130> ut nullis caesar rheni se dicat in aruis
+<luc. 10.131> tam rutilas uidisse comas; pars sanguinis usti,
+<luc. 10.132> torta caput, refugosque gerens a fronte capillos.
+<luc. 10.133> nec non infelix ferro mollita iuuentus""")
+
+    # We err on the side of caution here.
+    # Notice how the found passage is in part 10, not part 1.
+    # But 'lucan.bellum_civile.part.1' is a substring of
+    # 'lucan.bellum_civile.part.10', so we search it anyway.
+    def test_uttn_search(self):
+        path = 'lucan.bellum_civile.part.1'
+        search_space = make_search_space(path, 'la')
+        rich_hits = do_search('ACROSTIC', 'la', search_space, 'UTTN', 0)
+        self.assertEqual(rich_hits.to_string(),
+                         """<luc. 10.130> ut nullis caesar rheni se dicat in aruis
+<luc. 10.131> tam rutilas uidisse comas; pars sanguinis usti,
+<luc. 10.132> torta caput, refugosque gerens a fronte capillos.
+<luc. 10.133> nec non infelix ferro mollita iuuentus""")
 
     def test_uisa_search(self):
-        self.maxDiff = None
-        path = '../texts/la'
+        path = ''
         search_space = make_search_space(path, 'la')
         rich_hits = do_search('ACROSTIC', 'la', search_space, 'UISA', 0)
-        print(rich_hits.to_string())
         self.assertEqual(rich_hits.to_string(),
-                         """<valerius flaccus 2.583> uibrat et horrisonae respondent gargara buxo.
-<valerius flaccus 2.584> inde ubi iam medii tenuere silentia ponti
-<valerius flaccus 2.585> stridentesque iuuant aurae, phrixea subibant
-<valerius flaccus 2.586> aequora et angustas quondam sine nomine fauces.
+                         """<aus. ep. 28.7> uiuat amicus adhuc maneasque obnoxius heres?
+<aus. ep. 28.8> ignauos agitet talis timor, at tibi nullus
+<aus. ep. 28.9> sit metus et morem missae acceptaeque salutis
+<aus. ep. 28.10> audacter retine, uel si tibi proditor instat
 
 <claud. cons. stil. 3.94> uexit lingonico sudatas uomere messes?
 <claud. cons. stil. 3.95> ilia seges non auxilium modo praebuit urbi,
 <claud. cons. stil. 3.96> sed fuit indicio, quantum tibi, roma, liceret:
 <claud. cons. stil. 3.97> admonuit dominae gentes instarque tropaei
 
-<plin. nat. 18.69> uomerum plura genera: culter uocatur inflexus praedensam, priusquam proscindatur, terram secans futurisque sulcis uestigia praescribens incisuris, quas resupinus in arando mordeat uomer. alterum genus est uolgare rostrati uectis. tertium in solo facili, nec toto porrectum dentali, sed exigua cuspide in rostro. latior haec quarto generi et acutior in mucronem fastigata eodemque gladio scindens solum et acie laterum radices herbarum secans. non pridem inuentum in raetia galliae duas addere tali rotulas, quod genus uocant plaumorati. cuspis effigiem palae habet. serunt ita non nisi culta terra et fere noua. latitudo uomeris caespites uersat. semen protinus iniciunt cratesque dentatas supertrahunt. nec sarienda sunt hoc modo sata, sed protelis binis ternisque sic arant. uno boum iugo censeri anno facilis soli quadragena iugera, difficilis tricena iustum est.
-<plin. nat. 18.70> in arando magnopere seruandum est catonis oraculum: "quid est bene agrum colere bene arare. quid secundum arare. quid  tertium stercorare. sulco uario ne ares. tempestiue ares." tepidioribus locis a bruma proscindi arua oportet, frigidioribus ab aequinoctio uerno, et maturius sicca regione quam umida, maturius densa terra quam soluta, pingui quam macra. ubi siccae et graues aestates, terra cretosa aut gracilis, utilius inter solstitium et autumni aequinoctium aratur; ubi leues aestus, frequentes imbres, pingue herbosumque solum, ibi mediis caloribus. altum et graue solum etiam hieme moueri placet, tenue ualde et aridum paulo ante sationem.
-<plin. nat. 18.71> sunt et huic suae leges: lutosam terram ne tangito. ui omni arato. prius quam ares proscindito. hoc utilitatem habet, quod inuerso caespite herbarum radices necantur. quidam utique ab aequinoctio uerno proscindi uolunt. - quod uere semel aratum est, a temporis argumento ueruactum uocatur. hoc in nouali aeque necessarium est. nouale est quod alternis annis seritur. - araturos boues quam artissime iungi oportet, ut capitibus sublatis arent - sic minime colla contundunt - ; si inter arbores uitesque aretur, fiscellis capistrari, ne germinum tenera praecerpant; securiculam in stiua pendere, qua intercidantur radices - hoc melius quam conuelli aratro bouesque luctari - ; in arando uersum peragi nec strigare in actu spiritus. iustum est proscindi sulco dodrantali iugerum uno die, iterari sesquiiugerum, si sit facilitas  soli; si minus, proscindi semissem, iterari assem, quando et animalium labori natura leges statuit. omne aruum rectis sulcis, mox et obliquis subigi debet. in collibus trauerso tantum monte aratur, sed modo in superiora modo in inferiora rostrante uomere, tantumque est laboris homini, ut etiam boum uice fungatur. certe sine hoc animali montanae gentes sarculis arant. arator nisi incuruus praeuaricatur. inde tralatum hoc crimen in forum. ibi utique caueatur, ubi inuentum est. purget uomerem subinde stimulus cuspidatus rallo. scamna inter duos sulcos cruda ne relinquantur, glaebae ne exultent. male aratur aruom, quod satis frugibus occandum est. id demum recte subactum erit, ubi non intellegetur, utro uomer ierit. in usu est et collicias interponere, si ita locus poscat, ampliore sulco, quae in fossas aquam educant.
-<plin. nat. 18.72> aratione per trauersum iterata occatio sequitur, ubi res poscit, crate uel rastro, et sato semine iteratur haec quoque, ubi consuetudo patitur, crate contenta uel tabula aratro adnexa - quod uocant lirare - operiente semina; ni operiantur, quae primum appellata, deliratio est. quarto seri sulco uergilius existimatur uoluisse, cum dixit optimam esse segetem, quae bis soles, bis frigora sensisset. spissius solum, sicut plerumque in italia, quinto sulco seri melius est, in tuscis uero nono. at fabam et uiciam non proscisso serere sine damno conpendium operae est.
+<claud. eutr. 2.184> uberibus propior mordebat fibula uestes,
+<claud. eutr. 2.185> inque orbem tereti mitra retinente capillum
+<claud. eutr. 2.186> strinxerat et uirides flauescere iusserat angues.
+<claud. eutr. 2.187> aduolat ac niueis reducem complectitur ulnis
+
+<coripp. johann. 6.579> "uber equum domitor, longo nec ludere pilo "
+<coripp. johann. 6.580> implicitus strictis miles ualet undique ramis.
+<coripp. johann. 6.581> sollicitos locus ille duces cautumque magistrum
+<coripp. johann. 6.582> "abstinuit bellis, aciesque stare coegit. "
 
 <livy. urbe. 2.46.3> uix explicandi ordines spatium etruscis fuit, cum pilis inter primam trepidationem abiectis temere magis quam emissis pugna iam in manus, iam ad gladios, ubi mars est atrocissimus, uenerat.
 <livy. urbe. 2.46.4> inter primores genus fabium insigne spectaculo exemploque ciuibus erat. ex his q. fabium—tertio hic anno ante consul fuerat—principem in confertos veientes euntem ferox uiribus et armorum arte tuscus, incautum inter multas uersantem hostium manus, gladio per pectus transfigit; telo extracto praeceps fabius in uulnus cadit.
@@ -121,20 +144,10 @@ class SearchTests(unittest.TestCase):
 <livy. urbe. 3.65.10> seniores contra patrum, ut nimis feroces suos credere iuuenes esse, ita malle, si modus excedendus esset, suis quam aduersariis superesse animos.
 <livy. urbe. 3.65.11> adeo moderatio tuendae libertatis, dum aequari uelle simulando ita se quisque extollit, ut deprimat alium, in difficili est, cauendoque ne metuant, homines metuendos ultro se efficiunt, et iniuriam a nobis repulsam tamquam aut facere aut pati necesse sit, iniungimus aliis.
 
-<vergil_pseudo. aetna. 493> (utpote inaequalis uoluens perpascitur agros),
-<vergil_pseudo. aetna. 494> ingeminant fluctus et stantibus increpat undis;
-<vergil_pseudo. aetna. 495> sicut cum rapidum turbo mare cernulus aestu
-<vergil_pseudo. aetna. 496> ac primum tenuis imas agit, ulteriores
-
 <luc. 6.608> unam cum radiis presserunt sidera mortem,
 <luc. 6.609> inseruisse moras: et, quamuis fecerit omnis
 <luc. 6.610> stella senem, medios herbis abrumpimus annos.
 <luc. 6.611> at simul a prima descendit origine mundi
-
-<stat. theb. 6.197> uerba pio miscens: alio tibi, perfide, pacto,
-<stat. theb. 6.198> iuppiter, hunc crinem uoti reus ante dicaram,
-<stat. theb. 6.199> si pariter uirides nati libare dedisses
-<stat. theb. 6.200> ad tua templa genas, sed non ratus ore sacerdos,
 
 <ov. met. 11.166> uerrit humum tyrio saturata murice palla,
 <ov. met. 11.167> instrictamque fidem gemmis et dentibus indis
@@ -146,20 +159,25 @@ class SearchTests(unittest.TestCase):
 <ov. met. 13.853> sol uidet e caelo? soli tamen unicus orbis!
 <ov. met. 13.854> adde, quod in uestro genitor meus aequore regnat:
 
-<coripp. johann. 6.579> "uber equum domitor, longo nec ludere pilo "
-<coripp. johann. 6.580> implicitus strictis miles ualet undique ramis.
-<coripp. johann. 6.581> sollicitos locus ille duces cautumque magistrum
-<coripp. johann. 6.582> "abstinuit bellis, aciesque stare coegit. "
+<plin. nat. 18.69> uomerum plura genera: culter uocatur inflexus praedensam, priusquam proscindatur, terram secans futurisque sulcis uestigia praescribens incisuris, quas resupinus in arando mordeat uomer. alterum genus est uolgare rostrati uectis. tertium in solo facili, nec toto porrectum dentali, sed exigua cuspide in rostro. latior haec quarto generi et acutior in mucronem fastigata eodemque gladio scindens solum et acie laterum radices herbarum secans. non pridem inuentum in raetia galliae duas addere tali rotulas, quod genus uocant plaumorati. cuspis effigiem palae habet. serunt ita non nisi culta terra et fere noua. latitudo uomeris caespites uersat. semen protinus iniciunt cratesque dentatas supertrahunt. nec sarienda sunt hoc modo sata, sed protelis binis ternisque sic arant. uno boum iugo censeri anno facilis soli quadragena iugera, difficilis tricena iustum est.
+<plin. nat. 18.70> in arando magnopere seruandum est catonis oraculum: "quid est bene agrum colere bene arare. quid secundum arare. quid  tertium stercorare. sulco uario ne ares. tempestiue ares." tepidioribus locis a bruma proscindi arua oportet, frigidioribus ab aequinoctio uerno, et maturius sicca regione quam umida, maturius densa terra quam soluta, pingui quam macra. ubi siccae et graues aestates, terra cretosa aut gracilis, utilius inter solstitium et autumni aequinoctium aratur; ubi leues aestus, frequentes imbres, pingue herbosumque solum, ibi mediis caloribus. altum et graue solum etiam hieme moueri placet, tenue ualde et aridum paulo ante sationem.
+<plin. nat. 18.71> sunt et huic suae leges: lutosam terram ne tangito. ui omni arato. prius quam ares proscindito. hoc utilitatem habet, quod inuerso caespite herbarum radices necantur. quidam utique ab aequinoctio uerno proscindi uolunt. - quod uere semel aratum est, a temporis argumento ueruactum uocatur. hoc in nouali aeque necessarium est. nouale est quod alternis annis seritur. - araturos boues quam artissime iungi oportet, ut capitibus sublatis arent - sic minime colla contundunt - ; si inter arbores uitesque aretur, fiscellis capistrari, ne germinum tenera praecerpant; securiculam in stiua pendere, qua intercidantur radices - hoc melius quam conuelli aratro bouesque luctari - ; in arando uersum peragi nec strigare in actu spiritus. iustum est proscindi sulco dodrantali iugerum uno die, iterari sesquiiugerum, si sit facilitas  soli; si minus, proscindi semissem, iterari assem, quando et animalium labori natura leges statuit. omne aruum rectis sulcis, mox et obliquis subigi debet. in collibus trauerso tantum monte aratur, sed modo in superiora modo in inferiora rostrante uomere, tantumque est laboris homini, ut etiam boum uice fungatur. certe sine hoc animali montanae gentes sarculis arant. arator nisi incuruus praeuaricatur. inde tralatum hoc crimen in forum. ibi utique caueatur, ubi inuentum est. purget uomerem subinde stimulus cuspidatus rallo. scamna inter duos sulcos cruda ne relinquantur, glaebae ne exultent. male aratur aruom, quod satis frugibus occandum est. id demum recte subactum erit, ubi non intellegetur, utro uomer ierit. in usu est et collicias interponere, si ita locus poscat, ampliore sulco, quae in fossas aquam educant.
+<plin. nat. 18.72> aratione per trauersum iterata occatio sequitur, ubi res poscit, crate uel rastro, et sato semine iteratur haec quoque, ubi consuetudo patitur, crate contenta uel tabula aratro adnexa - quod uocant lirare - operiente semina; ni operiantur, quae primum appellata, deliratio est. quarto seri sulco uergilius existimatur uoluisse, cum dixit optimam esse segetem, quae bis soles, bis frigora sensisset. spissius solum, sicut plerumque in italia, quinto sulco seri melius est, in tuscis uero nono. at fabam et uiciam non proscisso serere sine damno conpendium operae est.
 
-<claud. eutr. 2.184> uberibus propior mordebat fibula uestes,
-<claud. eutr. 2.185> inque orbem tereti mitra retinente capillum
-<claud. eutr. 2.186> strinxerat et uirides flauescere iusserat angues.
-<claud. eutr. 2.187> aduolat ac niueis reducem complectitur ulnis
+<stat. theb. 6.197> uerba pio miscens: alio tibi, perfide, pacto,
+<stat. theb. 6.198> iuppiter, hunc crinem uoti reus ante dicaram,
+<stat. theb. 6.199> si pariter uirides nati libare dedisses
+<stat. theb. 6.200> ad tua templa genas, sed non ratus ore sacerdos,
 
-<aus. ep. 28.7> uiuat amicus adhuc maneasque obnoxius heres?
-<aus. ep. 28.8> ignauos agitet talis timor, at tibi nullus
-<aus. ep. 28.9> sit metus et morem missae acceptaeque salutis
-<aus. ep. 28.10> audacter retine, uel si tibi proditor instat
+<valerius flaccus 2.583> uibrat et horrisonae respondent gargara buxo.
+<valerius flaccus 2.584> inde ubi iam medii tenuere silentia ponti
+<valerius flaccus 2.585> stridentesque iuuant aurae, phrixea subibant
+<valerius flaccus 2.586> aequora et angustas quondam sine nomine fauces.
+
+<vergil_pseudo. aetna. 493> (utpote inaequalis uoluens perpascitur agros),
+<vergil_pseudo. aetna. 494> ingeminant fluctus et stantibus increpat undis;
+<vergil_pseudo. aetna. 495> sicut cum rapidum turbo mare cernulus aestu
+<vergil_pseudo. aetna. 496> ac primum tenuis imas agit, ulteriores
 
 <vergil_pseudo. app_ver. 1.493> (utpote inaequalis uoluens perpascitur agros),
 <vergil_pseudo. app_ver. 1.494> ingeminant fluctus et stantibus increpat undis;
@@ -167,7 +185,7 @@ class SearchTests(unittest.TestCase):
 <vergil_pseudo. app_ver. 1.496> ac primum tenuis imas agit, ulteriores""")
 
     def test_martyrii_search(self):
-        path = '../texts/la/cyprian.fortunatum_aut_de_exhortatione_martyrii'
+        path = 'cyprian.fortunatum_aut_de_exhortatione_martyrii'
         search_space = make_search_space(path, 'la')
         rich_hits = do_search('ACROSTIC', 'la', search_space, 'IIIDPP', 1)
         self.assertEqual(rich_hits.to_string(),
@@ -180,7 +198,7 @@ class SearchTests(unittest.TestCase):
 <cyprian. de_exhortatione_martyrii. 2.13> 'probat beatus apostolus paulus qui dignatione diuina usque in tertium caelum adque in paradisum raptus audisse se inenarrabilia testatur, qui oculata fide legum christum uidisse se gloriatur, qui id quod et didicit et uidit maioris conscientiae ueritate profitetur. non sunt, inquit, condignae passiones huius temporis ad superuenturam claritudinem quae reuelabitur in nobis. quis ergo non omnibus modis elaboret ad claritatem tantam peruenire, ut amicus dei fiat, ut cum christo statim gaudeat, ut post tormenta et supplicia terrena praemia diuina percipiat? si militibus saecularibus gloriosum est ut hoste deuicto redeant in patriam triumphantes, quanto potior et maior est gloria uicto diabolo ad paradisum triumphantem redire et unde adam peccator eiectus est illuc, prostrato eo qui ante deceperat trophaea uictricia reportare, offerre domino . acceptissimum munus incorruptam fidem, uirtutem mentis incolumem, laudem deuotionis inlustrem, comitari eum cum uenire coeperit uindictam de inimicis recepturus, lateri eius adsistere cum sederit iudicaturus, coheredem christi fieri, angelis coaequari, cum patriarchis, cum apostolis, cum prophetis caelestis regni possessione laetari. has cogitationes quae persecutio potest uincere, quae possunt tormenta superare? durat fortis et stabilis religiosis meditationibus fundata mens et aduersus omnes diaboli terrores et minas mundi animus inmobilis perstat quem futurorum fides certa et solida corroborat. eluduntur in persecutionibus terrae, sed patet caelum: minatur antichristus, sed christus tuetur: mors infertur, sed inmortalitas sequitur: occiso mundus eripitur, sed restituto paradisus exhibetur: uita temporalis extinguitur, sed aeternitas repraesentatur. quanta est dignitas et quanta securitas exire hinc laetum, exire inter pressuras et angustias gloriosum, eludere in momento oculos, quibus homines uidebantur et mundus, aperire eosdem statim, ut deus uideatur et christus. tam feliciter migrandi quanta uelocitas. terris repente subtraheris, ut in regnis caelestibus reponaris. haec oportet mente et cogitatione conplecti, haec die ac nocte meditari. si talem persecutio inuenerit dei militem, uinci non poterit uirtus ad proelium prompta. uel si arcessitio ante praeuenerit, sine praemio non erit fides quae erat ad martyrium praeparata: sine damno temporis merces deo iudice redditur: in persecutione militia, in pace conscientia coronatur.""")
 
     def test_martyri_search(self):
-        path = '../texts/la/cyprian.fortunatum_aut_de_exhortatione_martyrii'
+        path = 'cyprian.fortunatum_aut_de_exhortatione_martyrii'
         search_space = make_search_space(path, 'la')
         rich_hits = do_search('ACROSTIC', 'la', search_space, 'IIIDP', 1)
         self.assertEqual(rich_hits.to_string(),

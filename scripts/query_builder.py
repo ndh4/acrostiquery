@@ -70,7 +70,7 @@ def determine_searchspace(query_obj):
     user_res = (input("Would you like to search all " + get_human_readable_lang(query_obj) + " texts?\n> ")
                 .strip().lower())
     if user_res[:1] == 'y':
-        query_obj['pathname']: str = '../texts/' + query_obj['lang']
+        query_obj['search_space']: str = ''
     else:
         example = 'ovid.ars_amatoria'
         if query_obj['lang'] == 'grc':
@@ -79,7 +79,7 @@ def determine_searchspace(query_obj):
             example = 'milton.paradise_lost'
         user_res = (input(f"Which work would you like to search? (ex. {example})\n> ")
                     .strip().lower())
-        query_obj['pathname']: str = '../texts/' + query_obj['lang'] + '/' + user_res
+        query_obj['search_space']: str = user_res
 
 
 def build_query():

@@ -1,7 +1,7 @@
 import os
 import re
 from abc import abstractmethod
-from typing import Optional
+from typing import Optional, List
 
 from data_types import Line, Language
 from tesslang import standardize
@@ -26,14 +26,27 @@ class SearchSpace:
         pass
 
 
-def make_search_space(pathname: str, lang: Language) -> SearchSpace:
-    if os.path.isdir(pathname):
-        return DirectorySearchSpace(pathname, lang)
-    if os.path.isfile(pathname):
-        return FileSearchSpace(pathname, lang)
-    if os.path.isfile(pathname + '.tess'):
-        return FileSearchSpace(pathname + '.tess', lang)
-    raise Exception("Invalid Search Space:", pathname)
+def make_search_space(name: str, lang: Language) -> SearchSpace:
+    # possibilities for name:
+    # '' -> search all texts for given language
+    # 'augustine' -> search all texts under this author
+    # 'augustine.de_ordine' -> search all texts under this author/work
+    base = os.path.join('../texts/', lang)
+    all = []
+    for root, dirs, files in os.walk(base):
+        all.extend(sorted(sorted([os.path.join(root, file) for file in files
+                           if file.startswith(name) and file.endswith('.tess')],
+                          key=name_to_int)))
+    return MultiSearchSpace(all, lang)
+    # if name == '':
+    #     return MultiSearchSpace(base, lang)
+    # if os.path.isdir(pathname):
+    #     return MultiSearchSpace(pathname, lang)
+    # if os.path.isfile(base + '/' + name):
+    #     return SingleSearchSpace(base + '/' + name, lang)
+    # if os.path.isfile(base + '/' + name + '.tess'):
+    #     return SingleSearchSpace(base + '/' + name + '.tess', lang)
+    # raise Exception("Invalid Search Space:", name)
 
 
 class FileSearchSpace(SearchSpace):
@@ -64,6 +77,7 @@ class FileSearchSpace(SearchSpace):
             self.file.close()
             self.file = None
 
+
 def name_to_int(name: str) -> int:
     result = re.search('\\d+', name)
     if result is None:
@@ -71,12 +85,9 @@ def name_to_int(name: str) -> int:
     else:
         return int(result.group())
 
-class DirectorySearchSpace(SearchSpace):
-    def __init__(self, dirpath: str, lang: Language):
-        self.spaces = [make_search_space(os.path.join(dirpath, subpath), lang)
-                       for subpath in
-                       sorted(os.listdir(dirpath), key=name_to_int)
-                       if not subpath.endswith(".html")]
+class MultiSearchSpace(SearchSpace):
+    def __init__(self, paths: List[str], lang: Language):
+        self.spaces = [FileSearchSpace(path, lang) for path in paths]
         self.current_space = -1
         return
 

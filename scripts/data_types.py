@@ -91,6 +91,8 @@ class Hits:
     def add_hit(self, h: Hit):
         self.hits.append(h)
 
+    def len(self):
+        return len(self.hits)
 
     def to_string(self):
         return '\n\n'.join([hit.to_string() for hit in self.hits])
