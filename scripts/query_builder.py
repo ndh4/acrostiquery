@@ -1,5 +1,3 @@
-import os
-
 from data_types import SearchMode, Language
 from tesslang import standardize
 
@@ -78,21 +76,19 @@ def determine_searchspace(query_obj):
                     .strip().lower())
         query_obj['pathname']: str = '../texts/' + query_obj['lang'] + '/' + user_res
 
-def print_and_run(query_obj):
-    query = f"python3 cmd.py -m {query_obj['mode']} -l {query_obj['lang']} -b {query_obj['buflen']} {query_obj['pathname']} {query_obj['term']}"
-    print("Final query:", query)
-    os.system(query)
+# def print_and_run(query_obj):
+#     # query = f"python3 cmd.py -m {query_obj['mode']} -l {query_obj['lang']} -b {query_obj['buflen']} {query_obj['pathname']} {query_obj['term']}"
+#     print("Final query:", query_obj)
+#     # os.system(query)
 
 
-def main():
+def build_query():
     query_obj = {}
+
     determine_mode(query_obj)
     determine_lang(query_obj)
     determine_term(query_obj)
     determine_buflen(query_obj)
     determine_searchspace(query_obj)
 
-    print_and_run(query_obj)
-
-if __name__ == '__main__':
-    main()
+    return query_obj
