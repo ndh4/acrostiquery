@@ -47,7 +47,7 @@ class FileSearchSpace(SearchSpace):
 
     def reset(self):
         self.clean_up()
-        self.file = open(self.pathname, 'r')
+        self.file = open(self.pathname, 'r', encoding='utf8')
 
 
     def get_next_line(self) -> Optional[Line]:
