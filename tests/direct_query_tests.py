@@ -10,7 +10,7 @@ def is_as_expected(tester, input, expected_output):
 class SearchTests(unittest.TestCase):
     def test_telestich(self):
         self.maxDiff = None
-        input = '\"{\\"mode\\": \\"TELESTICH\\", \\"lang\\": \\"la\\", \\"term\\": \\"sim\\", \\"buflen\\": 3, \\"search_space\\": \\"lucan.bellum_civile.part.1.tess\\"}\"'
+        input = '\'{"mode": "TELESTICH", "lang": "la", "term": "sim", "buflen": 3, "search_space": "lucan.bellum_civile.part.1.tess"}\''
         expected_output = """<luc. 1.4> cognatasque acies, et rupto foedere regni,
 <luc. 1.5> certatum totis concussi uiribus orbis
 <luc. 1.6> in commune nefas, infestisque obuia signis
@@ -41,12 +41,11 @@ class SearchTests(unittest.TestCase):
 <luc. 1.513> humani, facilem uenturo caesare praedam
 <luc. 1.514> ignauae liquere manus. cum pressus ab hoste
 
-End of results. To re-run:
-python3 main.py """ + input
+End of results for """ + input
         is_as_expected(self, input, expected_output)
 
     def test_acrostic(self):
-        input = '\"{\\"mode\\": \\"ACROSTIC\\", \\"lang\\": \\"la\\", \\"term\\": \\"huq\\", \\"buflen\\": 3, \\"search_space\\": \\"lucan.bellum_civile.part.1.tess\\"}\"'
+        input = '\'{"mode": "ACROSTIC", "lang": "la", "term": "huq", "buflen": 3, "search_space": "lucan.bellum_civile.part.1.tess"}\''
         expected_output = """<luc. 1.11> ausoniis, umbraque erraret crassus inulta,
 <luc. 1.12> bella geri placuit nullos habitura triumphos?
 <luc. 1.13> heu quantum terrae potuit pelagique parari
@@ -57,12 +56,11 @@ python3 main.py """ + input
 <luc. 1.18> adstringit scythico glacialem frigore pontum!
 <luc. 1.19> sub iuga iam seres, iam barbarus isset araxes,
 
-End of results. To re-run:
-python3 main.py """ + input
+End of results for """ + input
         is_as_expected(self, input, expected_output)
 
     def test_front_cutoff(self):
-        input = '\"{\\"mode\\": \\"ACROSTIC\\", \\"lang\\": \\"la\\", \\"term\\": \\"ecst\\", \\"buflen\\": 1, \\"search_space\\": \\"prudentius.apotheosis\\"}\"'
+        input = '\'{"mode": "ACROSTIC", "lang": "la", "term": "ecst", "buflen": 1, "search_space": "prudentius.apotheosis"}\''
         expected_output = """<prud. apo.  . > 
 <prud. apo. 1.1> est tria summa deus, trinum specimen, uigor unus.
 <prud. apo. 1.2> corde patris genita est sapientia, filius ipse est;
@@ -70,6 +68,5 @@ python3 main.py """ + input
 <prud. apo. 1.4> tempore nec senior pater est, nec numine maior,
 <prud. apo. 1.5> nam sapiens retro semper deus edidit ex se,
 
-End of results. To re-run:
-python3 main.py """ + input
+End of results for """ + input
         is_as_expected(self, input, expected_output)
