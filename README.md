@@ -3,7 +3,7 @@
 ### Install python
 
 1. Go to [python.org/downloads/](https://www.python.org/downloads/) and download the latest version.
-2. Open the downloaded `pkg` or `exe` file and follow the installer's instructions to complete installation. Make sure that "Add python.exe to PATH" is selected. ![Make sure that Add python.exe to PATH has a check mark next to it.](images/add_python_to_path.png)
+2. Open the downloaded `pkg` or `exe` file and follow the installer's instructions to complete installation. On Windows, make sure that "Add python.exe to PATH" is selected. ![Make sure that Add python.exe to PATH has a check mark next to it.](images/add_python_to_path.png)
 
 ### Run acrostiquery
 
