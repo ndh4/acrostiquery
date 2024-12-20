@@ -41,7 +41,8 @@ class SearchTests(unittest.TestCase):
 <luc. 1.513> humani, facilem uenturo caesare praedam
 <luc. 1.514> ignauae liquere manus. cum pressus ab hoste
 
-End of results for """ + input
+End of results. To re-run:
+python3 main.py """ + input
         is_as_expected(self, input, expected_output)
 
     def test_acrostic(self):
@@ -56,7 +57,8 @@ End of results for """ + input
 <luc. 1.18> adstringit scythico glacialem frigore pontum!
 <luc. 1.19> sub iuga iam seres, iam barbarus isset araxes,
 
-End of results for """ + input
+End of results. To re-run:
+python3 main.py """ + input
         is_as_expected(self, input, expected_output)
 
     def test_front_cutoff(self):
@@ -68,5 +70,6 @@ End of results for """ + input
 <prud. apo. 1.4> tempore nec senior pater est, nec numine maior,
 <prud. apo. 1.5> nam sapiens retro semper deus edidit ex se,
 
-End of results for """ + input
+End of results. To re-run:
+python3 main.py """ + input
         is_as_expected(self, input, expected_output)
