@@ -7,9 +7,9 @@
 
 ### Run acrostiquery
 
-1. Code | Download ZIP.
+1. Go to [github.com/ndh4/acrostiquery](https://github.com/ndh4/acrostiquery) and click on the green box that says `<> Code`. Then click on `Download ZIP`.
 ![Code | Download ZIP](images/download_zip.png)
-2. Unzip the file and enter the resulting folder.
+2. Unzip the file and open the resulting folder.
 3. Open a terminal in `scripts`:
    1. On Mac, right-click on `scripts` and select "New Terminal at Folder" ![Right-click on `scripts` and select "New Terminal at Folder"](images/open_terminal_mac.png)
    2. On Windows, go to `scripts` folder, then right click and select `Open in Terminal` ![image](images/open_terminal_windows.png)
