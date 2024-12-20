@@ -67,7 +67,7 @@ def get_human_readable_lang(query_obj):
 
 
 def determine_searchspace(query_obj):
-    user_res = (input("Would you like to search all " + get_human_readable_lang(query_obj) + " texts?\n> ")
+    user_res = (input("Would you like to search all " + get_human_readable_lang(query_obj) + " texts? (y/n)\n> ")
                 .strip().lower())
     if user_res[:1] == 'y':
         query_obj['search_space']: str = ''
