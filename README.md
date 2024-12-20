@@ -7,16 +7,16 @@
 
 ### Run acrostiquery
 
-1. Go to [github.com/ndh4/acrostiquery](https://github.com/ndh4/acrostiquery) and click on the green box that says `<> Code`. Then click on `Download ZIP`.
+1. Go to [github.com/ndh4/acrostiquery](https://github.com/ndh4/acrostiquery) and click on the green box that says `<> Code`. Then click `Download ZIP`.
 ![Code | Download ZIP](images/download_zip.png)
-2. Unzip the file and open the resulting folder.
-3. Open a terminal in `scripts`:
+2. Unzip and open the downloaded folder.
+3. Open a terminal inside `scripts`:
    1. On Mac, right-click on `scripts` and select "New Terminal at Folder" ![Right-click on `scripts` and select "New Terminal at Folder"](images/open_terminal_mac.png)
    2. On Windows, go to `scripts` folder, then right click and select `Open in Terminal` ![image](images/open_terminal_windows.png)
 4. In the window that opens, type `python3 main.py` and hit enter.
    1. If that doesn't work, try `py main.py`.
    2. If that doesn't work, try `python main.py`.
    3. If that doesn't work, try `py3 main.py`.
-5. Answer the prompts that follow.
-![The first question should be, "Do you want to search for an acrostic or telestich?](images/mac_success.png)
+5. Answer the prompts that follow. The first prompt should ask whether you want to search for an acrostic or telestich.
+![The first question should be, "Do you want to search for an acrostic or telestich?"](images/mac_success.png)
 
