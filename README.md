@@ -16,7 +16,7 @@
       2. Select "New Terminal at Folder" ![Right-click on `scripts` and select "New Terminal at Folder"](images/open_terminal_mac.png)
    2. Here's how to do it on Windows:
       1. Open the `scripts` folder.
-      2. Click on the address bar at the top of the window. ![Click on the space after the address.](images/scripts_folder.png) ![The entire address should be highlighted after you do so.](images/address_highlighted.png)
+      2. Click on the address bar at the top of the window. This should highlight the entire address of the `scripts` folder. ![Click on the space after the address.](images/scripts_folder.png) ![The entire address should be highlighted after you do so.](images/address_highlighted.png)
       3. Use <kbd>CTRL</kbd> + <kbd>c</kbd> to copy the contents of the address bar.
       4. Open Windows Search (AKA the Start Menu) and search for `cmd`. Open the first thing that comes up (probably called `Command Prompt`). ![Search for cmd and open the first program that comes up.](images/windows_search.png)
       5. Type the letters `cd` and hit the <kbd>Space</kbd> bar, then use <kbd>CTRL</kbd> + <kbd>v</kbd> to paste the address you copied earlier. ![cd paste](images/type_cd.png)
