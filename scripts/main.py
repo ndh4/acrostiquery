@@ -12,7 +12,7 @@ def main():
         query = query_builder.build_query()
         print(f"\nFinal query: '{json.dumps(query)}'")
 
-    print()
+    print("Searching...")
     query_runner.run_query(query)
     print(f"\nEnd of results for '{json.dumps(query)}'")
 

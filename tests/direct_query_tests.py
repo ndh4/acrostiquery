@@ -11,7 +11,7 @@ class SearchTests(unittest.TestCase):
     def test_telestich(self):
         self.maxDiff = None
         input = '\'{"mode": "TELESTICH", "lang": "la", "term": "sim", "buflen": 3, "search_space": "lucan.bellum_civile.part.1.tess"}\''
-        expected_output = """<luc. 1.4> cognatasque acies, et rupto foedere regni,
+        expected_output = """Searching...\n\n<luc. 1.4> cognatasque acies, et rupto foedere regni,
 <luc. 1.5> certatum totis concussi uiribus orbis
 <luc. 1.6> in commune nefas, infestisque obuia signis
 <luc. 1.7> signa, pares aquilas, et pila minantia pilis.
@@ -46,7 +46,7 @@ End of results for """ + input
 
     def test_acrostic(self):
         input = '\'{"mode": "ACROSTIC", "lang": "la", "term": "huq", "buflen": 3, "search_space": "lucan.bellum_civile.part.1.tess"}\''
-        expected_output = """<luc. 1.11> ausoniis, umbraque erraret crassus inulta,
+        expected_output = """Searching...\n\n<luc. 1.11> ausoniis, umbraque erraret crassus inulta,
 <luc. 1.12> bella geri placuit nullos habitura triumphos?
 <luc. 1.13> heu quantum terrae potuit pelagique parari
 <luc. 1.14> hoc, quem ciuiles hauserunt, sanguine, dextrae,
@@ -61,7 +61,7 @@ End of results for """ + input
 
     def test_front_cutoff(self):
         input = '\'{"mode": "ACROSTIC", "lang": "la", "term": "ecst", "buflen": 1, "search_space": "prudentius.apotheosis"}\''
-        expected_output = """<prud. apo.  . > 
+        expected_output = """Searching...\n\n<prud. apo.  . > 
 <prud. apo. 1.1> est tria summa deus, trinum specimen, uigor unus.
 <prud. apo. 1.2> corde patris genita est sapientia, filius ipse est;
 <prud. apo. 1.3> sanctus ab aeterno subsistit spiritus ore.

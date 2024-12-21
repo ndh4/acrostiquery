@@ -6,4 +6,5 @@ def run_query(query) -> None:
     results = do_search(query['mode'], query['lang'],
               search_space,
               query['term'], query['buflen'])
+    print()
     print(results.to_string())
