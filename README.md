@@ -20,8 +20,8 @@
       3. Use <kbd>CTRL</kbd> + <kbd>c</kbd> to copy the contents of the address bar.
       4. Open the Start Menu and search for `cmd`. Open the first thing that comes up (probably called `Command Prompt`). ![Search for cmd and open the first program that comes up.](images/windows_search.png)
       5. Type `pushd` and hit the <kbd>Space</kbd> bar, then use <kbd>CTRL</kbd> + <kbd>v</kbd> to paste the address you copied earlier. ![pushd paste](images/pushd.png)
-      6. Hit the <kbd>Enter</kbd> key.
-4. Type `python3 main.py` and hit enter.
+      6. Hit the <kbd>Enter</kbd> key 3 or 4 times. ![Hit enter 3 or 4 times to make sure that the command took.](images/enter3.png)
+4. Type `python3 main.py` and hit <kbd>Enter</kbd>.
    1. If that doesn't work ("Python was not found/recognized"), try `py main.py`.
    2. If that doesn't work, try `python main.py`.
    3. If that doesn't work, try `py3 main.py`.
