@@ -57,15 +57,15 @@ def beta_to_uni(beta):
 def standardize(lang, lemma):
 	'''Standardize orthography of greek and latin words'''
 
-	if lang == 'la':
-		lemma = lemma.replace('j', 'i')
-		lemma = lemma.replace('v', 'u')
-
 	if lang == 'grc':
 		lemma = lemma.replace('\\', '/')
 		lemma = beta_to_uni(lemma)
 
 	lemma = unicodedata.normalize('NFKD', lemma)
-	lemma = lemma.lower()	
+	lemma = lemma.lower()
 
-	return(lemma)
+	if lang == 'la':
+		lemma = lemma.replace('j', 'i')
+		lemma = lemma.replace('v', 'u')
+
+	return lemma
