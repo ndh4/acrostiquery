@@ -1,3 +1,7 @@
+# About
+
+Acrostiquery empowers users to mechanically search for acrostics (words made from the first letters of consecutive lines of poetry or prose) and telestichs (words made from the last letter of consecutive lines), primarily in Greek and Latin literature. Users can search any author or text in the [Tesserae project](https://tesserae.caset.buffalo.edu/blog/about-tesserae/)'s corpus (see the available [Latin](https://github.com/ndh4/acrostiquery/tree/main/texts/la), [Greek](https://github.com/ndh4/acrostiquery/tree/main/texts/grc), and [English](https://github.com/ndh4/acrostiquery/tree/main/texts/en) texts here).
+
 # Instructions
 
 ### Install python
