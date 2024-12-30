@@ -32,3 +32,9 @@ Acrostiquery empowers users to mechanically search for acrostics (words made fro
 5. Answer the prompts that follow. The first prompt should be the question shown below.
 ![The first question should be, "Do you want to search for an acrostic or telestich?"](images/mac_success.png)
 6. After you've answered all the questions, and the program gives you a search result, you can repeat step 4 to start another search.
+
+# Acknowledgements
+
+Big thanks to Neil Coffee and the [Tesserae team](https://tesserae.caset.buffalo.edu/blog/people/) for the use of their corpus and specialized `.tess` file format. Also, thanks to Joseph Dexter and the [Quantitative Criticism Lab](https://www.qcrit.org/people) for their advice and direction.
+
+If you run into problems using this tool or have suggestions for improvement, contact Nathaniel Hejduk at [nhejduk4@gmail.com](mailto:nhejduk4@gmail.com).
